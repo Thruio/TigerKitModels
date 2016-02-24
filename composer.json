@@ -1,0 +1,24 @@
+{
+  "name": "thru.io/tiger-kit-models",
+  "description": "Models for TigerKit",
+  "license": "GPL V2",
+  "authors": [
+    {
+      "name": "Matthew Baggett",
+      "email": "matthew@baggett.me"
+    }
+  ],
+  "require": {
+    "thru.io/active_record": ">=0.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "TigerKit\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TigerKit\\Test\\": "tests/"
+    }
+  }
+}
