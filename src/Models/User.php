@@ -54,7 +54,7 @@ class User extends UserRelatableObject
         if (strlen($this->password) == 40 && $passwordInfo['algoName'] == "unknown") {
             if (hash("SHA1", $password) == $this->password) {
                 $this->setPassword($password);
-                TigerApp::log("Password for {$this->username} rehashed (Legacy).");
+                Watchdog::Log("Password for {$this->username} rehashed (Legacy).");
                 return true;
             }
         }
@@ -63,7 +63,7 @@ class User extends UserRelatableObject
             if (password_needs_rehash($this->password, PASSWORD_DEFAULT)) {
                 $this->setPassword($password);
                 $this->save();
-                TigerApp::log("Password for {$this->username} rehashed ({$passwordInfo['algoName']}).");
+                Watchdog::Log("Password for {$this->username} rehashed ({$passwordInfo['algoName']}).");
             }
             return true;
         }else {
@@ -76,7 +76,7 @@ class User extends UserRelatableObject
         if (self::getCurrent() instanceof User) {
             return true;
         }else {
-            TigerApp::getSlimApp()->response()->redirect("/login");
+            return false;
         }
     }
 
@@ -111,7 +111,7 @@ class User extends UserRelatableObject
             $this->user_uuid = UUID::v4();
         }
         if (!$this->user_id) {
-            TigerApp::log("New user created: {$this->username} / {$this->displayname} / {$this->email}");
+            Watchdog::Log("New user created: {$this->username} / {$this->displayname} / {$this->email}");
         }
 
         return parent::save($automatic_reload);
