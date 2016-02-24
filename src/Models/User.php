@@ -1,11 +1,8 @@
 <?php
 namespace TigerKit\Models;
 
-use Slim\Log;
-use \Thru\ActiveRecord\ActiveRecord;
 use Thru\Session\Session;
 use Thru\UUID;
-use TigerKit\TigerApp;
 
 /**
  * Class User
