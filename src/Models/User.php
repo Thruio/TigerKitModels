@@ -30,6 +30,9 @@ class User extends UserRelatableObject
     public $email;
     public $type = "User";
 
+    const TYPE_USER = "User";
+    const TYPE_ADMIN = "Admin";
+
     public function isAdmin()
     {
         if ($this->type == 'Admin') {
