@@ -26,13 +26,13 @@ class UserService extends BaseService
         }
 
         if (!$user instanceof Models\User) {
-            TigerApp::log("No such user {$username}", Slim\Log::WARN);
+            Models\Watchdog::Log("No such user {$username}", Slim\Log::WARN);
             return false;
         } elseif ($user->checkPassword($password)) {
             Session::set("user", $user);
             return true;
         }else {
-            TigerApp::log("Failed login for {$username}", Slim\Log::WARN);
+            Models\Watchdog::Log("Failed login for {$username}", Slim\Log::WARN);
             return false;
         }
     }
@@ -43,6 +43,7 @@ class UserService extends BaseService
      * @param $password
      * @param $email
      * @return Models\User
+     * @throws TigerException
      */
     public function createUser($username, $realname, $password, $email)
     {
