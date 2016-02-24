@@ -26,13 +26,13 @@ class UserService extends BaseService
         }
 
         if (!$user instanceof Models\User) {
-            Models\Watchdog::Log("No such user {$username}", Slim\Log::WARN);
+            Models\Watchdog::Log("No such user {$username}", null, Models\Watchdog::LEVEL_WARNING);
             return false;
         } elseif ($user->checkPassword($password)) {
             Session::set("user", $user);
             return true;
         }else {
-            Models\Watchdog::Log("Failed login for {$username}", Slim\Log::WARN);
+            Models\Watchdog::Log("Failed login for {$username}", null, Models\Watchdog::LEVEL_WARNING);
             return false;
         }
     }

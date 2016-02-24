@@ -32,7 +32,7 @@ class Watchdog extends UserRelatableObject
     const LEVEL_ALERT     = "Alert";
     const LEVEL_EMERGENCY = "Emergency";
 
-    static public function Log($message, $params = [], $level = Watchdog::LEVEL_INFO){
+    static public function Log($message, $params = null, $level = Watchdog::LEVEL_INFO){
         $watchdog = new Watchdog();
         $watchdog->message = $message;
         $watchdog->params = json_encode($params, JSON_PRETTY_PRINT);
