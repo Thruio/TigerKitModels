@@ -37,6 +37,11 @@ class UserService extends BaseService
         }
     }
 
+    public function doLogout(){
+        Session::dispose("user");
+        return true;
+    }
+
     /**
      * @param $username
      * @param $realname
@@ -71,6 +76,18 @@ class UserService extends BaseService
         $user->email = $email;
         $user->save();
         return $user;
+    }
+
+    /**
+     * @return Models\User|false
+     */
+    public function isLoggedIn()
+    {
+        $user = Session::get("user");
+        if($user instanceof Models\User){
+            return $user;
+        }
+        return false;
     }
 
     public function findUserByUUID($uuid)
